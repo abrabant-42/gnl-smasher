@@ -33,6 +33,7 @@ function run_tests() {
 	ref_ret=(1 1 0 0 -2 0 0 0 0 -1 -1 -1)
 
 	i=0
+	printf "\n"
 	for src in "${test_sources[@]}"
 	do
 		srcpath="./tests/src/$src.c"
@@ -41,7 +42,7 @@ function run_tests() {
 		gen_ref "./tests/files/${test_files[i]}" ${ref_lnnb[i]} ${ref_ret[i]}
 		comp_test $srcpath
 		./testbin.out > ./out/test/$test_name.testout
-		[ $? -ne 0 ] && warn "Error found in test \033[0;34m$test_name\033[0m. Ignoring it. Please report that!" && continue
+		[ $? -ne 0 ] && warn "Error found in test \033[0;34m$test_name\033[0m. Ignoring it." && continue
 		rm -rf ./testbin.out
 		diff -u ./out/ref/$test_name.ref ./out/test/$test_name.testout > ./out/diffs/$test_name.diff
 		diff_exit=$?
@@ -50,7 +51,7 @@ function run_tests() {
 		# Produces the OK/KO output and increment the test counters
 		assert_test $diff_exit $test_name
 		# Register the test in the deepthought file
-		register_test $test_name $i
+		[ $NODT == "no" ] && register_test $test_name $i
 		i=$((i+1))
 	done
 }

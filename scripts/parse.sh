@@ -2,12 +2,36 @@
 
 DEEPTHOUGHT="deepthought-$(date +%s)"
 DT_PATH="./out/deepthought"
+NODT="no"
 BUFFER_SIZE=32
+RUN="no"
+
+# Parse the command line arguments
+
+[ $# -eq 0 ] && display_help && exit 0
 
 while [ $# -gt 0 ]
 do
 	key=$1
 	case $key in
+		purge)
+			rm -rf ./out/deepthought/*
+			info "Purged \033[0;35m./out/deepthoughts\033[0m"
+			exit 0
+			shift
+			;;
+		run)
+			shift
+			RUN="yes"
+			;;
+		help)
+			display_help
+			exit 0
+			;;
+		version)
+			printf "gnl-smasher version \033[0;35m$VERSION\033[0m\n"
+			exit 0
+			;;
 		--dt-name=*|--deepthought-name=*)
 			DEEPTHOUGHT=$(echo $1 | cut -d= -f2)
 			info "deepthought name set to \033[0;34m$DEEPTHOUGHT\033[0m."
@@ -18,14 +42,10 @@ do
 			info "deepthought path set to \033[0;34m$DT_PATH\033[0m."
 			shift
 			;;
-		--purge)
-			rm -rf ./out/deepthought/*
-			info "Purged \033[0;35m./out/deepthoughts\033[0m"
+		--nodt|--no-deepthought)
+			NODT="yes"
+			info "No deepthought will be generated."
 			shift
-			;;
-		--help)
-			display_help
-			exit 0
 			;;
 		--bfz=*|--BUFFER_SIZE=*)
 			BUFFER_SIZE=$(echo $1 | cut -d= -f2)
@@ -33,15 +53,13 @@ do
 			shift
 			;;
 		*)
-			warn "Unknown command line argument \033[0;32m$1\033[0m: ignored."
+			fatal_error "Invalid usage, argument $1 is not handled. Run \033[0;35m./smasher help \033[0mfor help !"
 			shift
 			;;
 	esac
 done
 
-echo
-
-
+[ $RUN == "no" ] && fatal_error "Options may have been specified, but no command has been found. See help for more infos." $EXIT_INVALID_USAGE
 
 # parse the configuration file
 #

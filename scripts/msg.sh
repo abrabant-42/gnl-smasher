@@ -1,11 +1,16 @@
 #!/bin/bash
 
 function display_help() {
-	printf "gnl-smasher \033[0;32m$VERSION\033[0m by \033[0;34m$AUTHORS\033[0m\n\n"
-	printf '%-50s Display this help menu.\n' "--help"
-	printf '%-50s Change the name of the deepthought file.\n' "--dt-name=n | --deepthought-name=n"
-	printf '%-50s Change the path of the deepthought file.\n' "--dt-path=p | --deepthought-path=p"
-	printf '%-50s Specify a custom BUFFER_SIZE (default is 32).\n' "--bfz=n | --BUFFER_SIZE=n"
+	printf "\ngnl-smasher \033[0;32m$VERSION\033[0m by \033[0;34m$AUTHORS\033[0m\n\n"
+	printf "Usage: smasher <command> [options]\n\n"
+	printf '%-40s Display this help menu.\n' "help"
+	printf '%-40s Purge the deepthought directory.\n' "purge"
+	printf '%-40s Only display the version of gnl-smasher.\n' "version"
+	printf '%-40s Run the tests\n' "run"
+	printf '%40s %-40s Change the name of the deepthought file.\n' "" "--dt-name=n | --deepthought-name=n"
+	printf '%40s %-40s Change the path of the deepthought file.\n' "" "--dt-path=p | --deepthought-path=p"
+	printf '%40s %-40s Specify a custom BUFFER_SIZE (default is 32).\n' ""  "--bfz=n | --BUFFER_SIZE=n"
+	printf '%40s %-40s No deepthought will be generated.\n' ""  "--nodt | --no-deepthought"
 }
 
 # prints a fatal error on stdout and exit the program.
@@ -14,7 +19,7 @@ function display_help() {
 # @param	number	the non-zero exit code.
 
 function fatal_error() {
-	echo -e "[\033[32mFATAL\033[0m] $1"
+	echo -e "[\033[31mFATAL\033[0m] $1"
 	echo -e "[FATAL] $1" >> $DT_PATH/$DEEPTHOUGHT
 	finish_cleanup
 	exit $2
@@ -25,7 +30,7 @@ function fatal_error() {
 # @param	string	the warning message.
 
 function warn() {
-	echo -e "[\033[34mWARNING\033[0m] $1"
+	echo -e "[\033[33mWARNING\033[0m] $1"
 }
 
 function info() {
