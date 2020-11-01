@@ -16,17 +16,21 @@ function gen_ref() {
 	else
 		head -$2 $1 > $output_file
 	fi
-	echo "return value: $3" >> $output_file
+	[ $3 -ne -2 ] && echo "return value: $3" >> $output_file
 }
 
 function run_tests() {
 	test_files=("baudelaire1.txt" "baudelaire1.txt" "baudelaire1.txt" "baudelaire2.txt"					\
+					"no_newline.txt" "empty_lines.txt" "empty.txt" "bigline.txt" "many_biglines.txt"	\
+					"baudelaire1.txt" "baudelaire1.txt" "baudelaire1.txt"
 				)
 	test_sources=("test_simple_line" "test_two_simple_lines" "test_full_file_with_newline_at_the_end"	\
-					"test_full_file_with_empty_lines"													\
+					"test_full_file_with_empty_lines" "test_no_newline"									\
+					"test_full_file_empty_lines_only" "test_empty_file" "test_one_big_line" 			\
+					"test_many_big_lines" "test_directory_fd" "test_negative_fd" "test_NULL_line"		\
 				)
-	ref_lnnb=(1 2 -1 -1)
-	ref_ret=(1 1 0 0)
+	ref_lnnb=(1 2 -1 -1 -1 -1 -1 -1 -1 0 0 0)
+	ref_ret=(1 1 0 0 -2 0 0 0 0 -1 -1 -1)
 
 	i=0
 	for src in "${test_sources[@]}"

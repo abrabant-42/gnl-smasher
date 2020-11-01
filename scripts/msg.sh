@@ -1,5 +1,13 @@
 #!/bin/bash
 
+function display_help() {
+	printf "gnl-smasher \033[0;32m$VERSION\033[0m by \033[0;34m$AUTHORS\033[0m\n\n"
+	printf '%-50s Display this help menu.\n' "--help"
+	printf '%-50s Change the name of the deepthought file.\n' "--dt-name=n | --deepthought-name=n"
+	printf '%-50s Change the path of the deepthought file.\n' "--dt-path=p | --deepthought-path=p"
+	printf '%-50s Specify a custom BUFFER_SIZE (default is 32).\n' "--bfz=n | --BUFFER_SIZE=n"
+}
+
 # prints a fatal error on stdout and exit the program.
 #
 # @param	string	the fatal error message.

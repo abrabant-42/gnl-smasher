@@ -1,5 +1,5 @@
-#ifndef GNL_EATER_H
-# define GNL_EATER_H
+#ifndef GNL_SMASHER_H
+# define GNL_SMASHER_H
 # include <stdio.h>
 # include <fcntl.h>
 # include <unistd.h>

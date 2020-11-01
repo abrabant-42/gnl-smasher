@@ -15,8 +15,8 @@ function compile_proj_objs() {
 	rm -rf ./obj/get_next_line.o ./obj/get_next_line_utils.o
 	mkdir .obj 2> /dev/null
 
-	${CC} ${CFLAGS} -D BUFFER_SIZE=$2 $1/get_next_line.c -c -o .obj/get_next_line.o
-	${CC} ${CFLAGS} -D BUFFER_SIZE=$2 $1/get_next_line_utils.c -c -o .obj/get_next_line_utils.o
+	${CC} ${CFLAGS} -D BUFFER_SIZE=$BUFFER_SIZE $1/get_next_line.c -c -o .obj/get_next_line.o
+	${CC} ${CFLAGS} -D BUFFER_SIZE=$BUFFER_SIZE $1/get_next_line_utils.c -c -o .obj/get_next_line_utils.o
 
 	[ ! -f ./.obj/get_next_line.o ] || [ ! -f ./.obj/get_next_line_utils.o ] && fatal_error "Could not compile YOUR project!" $EXIT_COMPILATION_ERROR
 }

@@ -6,7 +6,7 @@ int	main(void) {
 	int		ret;
 
 	/* open file - if an error occurs here, the test will be ignored, that's not your fault ! */
-	if ((fd = open("./tests/files/baudelaire1.txt", O_RDONLY)) == -1 || read(fd, NULL, 0) == -1) {
+	if ((fd = open("./tests/files/empty_lines.txt", O_RDONLY)) == -1 || read(fd, NULL, 0) == -1) {
 		return (TEST_ERROR);
 	}
 

@@ -2,6 +2,7 @@
 
 DEEPTHOUGHT="deepthought-$(date +%s)"
 DT_PATH="./out/deepthought"
+BUFFER_SIZE=32
 
 while [ $# -gt 0 ]
 do
@@ -20,6 +21,15 @@ do
 		--purge)
 			rm -rf ./out/deepthought/*
 			info "Purged \033[0;35m./out/deepthoughts\033[0m"
+			shift
+			;;
+		--help)
+			display_help
+			exit 0
+			;;
+		--bfz=*|--BUFFER_SIZE=*)
+			BUFFER_SIZE=$(echo $1 | cut -d= -f2)
+			info "BUFFER_SIZE set to \033[0;35m$BUFFER_SIZE\033[0m."
 			shift
 			;;
 		*)

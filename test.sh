@@ -19,7 +19,6 @@ test_failed=0
 test_passed=0
 test_ignored=0
 
-
 # Parse and check
 source scripts/parse.sh
 parse_config $config_path
@@ -29,7 +28,7 @@ is_gnl_path_correct $gnl_path
 source scripts/deepthought.sh
 
 # Compile project
-compile_proj_objs $gnl_path 32
+compile_proj_objs $gnl_path
 
 run_tests
 

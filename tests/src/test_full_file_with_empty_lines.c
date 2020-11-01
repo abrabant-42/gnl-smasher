@@ -1,4 +1,4 @@
-#include "gnl_eater.h"
+#include "gnl_smasher.h"
 
 int	main(void) {
 	int		fd = -1;
