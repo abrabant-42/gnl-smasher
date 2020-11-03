@@ -34,7 +34,7 @@ function check_test() {
 	diff -u ./out/ref/$test_name.ref ./out/test/$test_name.testout > ./out/diffs/$test_name.diff
 	diff_exit=$?
 	# if there's no diff remove the file
-	[ $diff_exit -eq 0 ] && rm -rf ./out/diffs/$1.diff
+	[ $diff_exit -eq 0 ] && rm -rf ./out/diffs/$test_name.diff
 	# Produces the OK/KO output and increment the test counters
 	assert_test $diff_exit $test_name
 	# Register the test in the deepthought file
