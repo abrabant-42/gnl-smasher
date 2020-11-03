@@ -3,14 +3,14 @@
 function display_help() {
 	printf "\ngnl-smasher \033[0;32m$VERSION\033[0m by \033[0;34m$AUTHORS\033[0m\n\n"
 	printf "Usage: smasher <command> [options]\n\n"
-	printf '%-40s Display this help menu.\n' "help"
-	printf '%-40s Purge the deepthought directory.\n' "purge"
-	printf '%-40s Only display the version of gnl-smasher.\n' "version"
-	printf '%-40s Run the tests\n' "run"
-	printf '%40s %-40s Change the name of the deepthought file.\n' "" "--dt-name=n | --deepthought-name=n"
-	printf '%40s %-40s Change the path of the deepthought file.\n' "" "--dt-path=p | --deepthought-path=p"
-	printf '%40s %-40s Specify a custom BUFFER_SIZE (default is 32).\n' ""  "--bfz=n | --BUFFER_SIZE=n"
-	printf '%40s %-40s No deepthought will be generated.\n' ""  "--nodt | --no-deepthought"
+	printf '%-15s Display this help menu.\n' "help"
+	printf '%-15s Purge the deepthought directory.\n' "purge"
+	printf '%-15s Only display the version of gnl-smasher.\n' "version"
+	printf '%-15s Run the tests\n' "run"
+	printf '%15s %-40s Change the name of the deepthought file.\n' "" "--dt-name=n | --deepthought-name=n"
+	printf '%15s %-40s Change the path of the deepthought file.\n' "" "--dt-path=p | --deepthought-path=p"
+	printf '%15s %-40s Specify a custom BUFFER_SIZE (default is 32).\n' ""  "--bfz=n | --BUFFER_SIZE=n"
+	printf '%15s %-40s No deepthought will be generated.\n' ""  "--nodt | --no-deepthought"
 }
 
 # prints a fatal error on stdout and exit the program.

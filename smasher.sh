@@ -28,6 +28,7 @@ source scripts/deepthought.sh
 compile_proj_objs $gnl_path
 
 run_tests
+run_multi_fd_test
 
 summary
 
