@@ -1,4 +1,4 @@
-# gnl-masher
+# gnl-smasher
 ![](https://i.imgur.com/0UWAtlh.png)
 
 
