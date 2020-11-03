@@ -14,7 +14,7 @@ function gen_ref() {
 	then
 		cat $1 >> $output_file
 	else
-		head -$2 $1 >> $output_file
+		head -$2 $1 >> $output_file 2> /dev/null
 	fi
 	[ $3 -ne -2 ] && echo "return value: $3" >> $output_file
 }
