@@ -1,13 +1,19 @@
 #!/bin/bash
 
+# flags
 DEEPTHOUGHT="deepthought-$(date +%s)"
 DT_PATH="./out/deepthought"
-NODT="no"
 BUFFER_SIZE=32
+
+# bools
+NODT="no"
 RUN="no"
+BONUS="yes"
+LOG="yes"
 
 # Parse the command line arguments
 
+# if there's no argument then display help
 [ $# -eq 0 ] && display_help && exit 0
 
 while [ $# -gt 0 ]
@@ -50,6 +56,16 @@ do
 		--bfz=*|--BUFFER_SIZE=*)
 			BUFFER_SIZE=$(echo $1 | cut -d= -f2)
 			info "BUFFER_SIZE set to \033[0;35m$BUFFER_SIZE\033[0m."
+			shift
+			;;
+		--nobonus)
+			BONUS="no"
+			info "Bonus test will be omitted."
+			shift
+			;;
+		--nolog)
+			LOG="no"
+			info "Log files will be cleaned up when the tests finish. (deepthought not included)"
 			shift
 			;;
 		*)

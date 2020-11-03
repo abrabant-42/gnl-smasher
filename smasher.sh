@@ -20,6 +20,7 @@ prepare_cleanup
 source scripts/parse.sh
 parse_config $config_path
 is_gnl_path_correct $gnl_path
+[ $DT_PATH != "./out/deepthought" ] && is_dt_path_correct
 
 # Init deepthought
 source scripts/deepthought.sh
@@ -28,8 +29,11 @@ source scripts/deepthought.sh
 compile_proj_objs $gnl_path
 
 run_tests
-run_multi_fd_test
+[ $BONUS == "yes" ] && run_multi_fd_test
 
 summary
 
 finish_cleanup
+
+# Clean everything at the end of the tests if --nolog is specified
+[ $LOG == "no" ] && prepare_cleanup

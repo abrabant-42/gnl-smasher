@@ -1,9 +1,10 @@
 #include "gnl_smasher.h"
+#include <string.h>
 #define TOTAL_ELEM 4
 
-int	main(void) {
+int		main(void) {
 	char		*line = NULL;
-	int			fd = -1;
+	int			fd[TOTAL_ELEM] = { -1, };
 	int			ret;
 	const char	*files[] = {
 		"./tests/files/baudelaire1.txt",
@@ -16,13 +17,19 @@ int	main(void) {
 	};
 
 	for (size_t i = 0; i < TOTAL_ELEM; ++i) {
-		if ((fd = open(files[i], O_RDONLY)) == -1) {
+		if ((fd[i] = open(files[i], O_RDONLY)) == -1) {
 			return (TEST_ERROR);
 		}
-		for (size_t j = 0; j < must_read[i] && (ret = get_next_line(fd, &line)) > 0; ++j) {
+		for (size_t j = 0; j < must_read[i] && get_next_line(fd[i], &line) > 0; ++j) {
 			printf("%s\n", line);
 			free(line);
 			line = NULL;
+		}
+	}
+	for (size_t i = 0; i < TOTAL_ELEM; ++i) {
+		ret = get_next_line(fd[i], &line);
+		if (ret > 0) {
+			printf("%s\n", line);
 		}
 		printf("return value: %d\n", ret);
 	}

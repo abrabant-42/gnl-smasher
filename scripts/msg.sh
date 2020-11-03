@@ -3,10 +3,12 @@
 function display_help() {
 	printf "\ngnl-smasher \033[0;32m$VERSION\033[0m by \033[0;34m$AUTHORS\033[0m\n\n"
 	printf "Usage: smasher <command> [options]\n\n"
-	printf '%-15s Display this help menu.\n' "help"
-	printf '%-15s Purge the deepthought directory.\n' "purge"
-	printf '%-15s Only display the version of gnl-smasher.\n' "version"
-	printf '%-15s Run the tests\n' "run"
+	printf '\033[0;34m%-15s \033[0mDisplay this help menu.\n' "help"
+	printf '\033[0;34m%-15s \033[0mPurge the deepthought directory.\n' "purge"
+	printf '\033[0;34m%-15s \033[0mOnly display the version of gnl-smasher.\n' "version"
+	printf '\033[0;34m%-15s \033[0mRun the tests\n' "run"
+	printf '%15s %-40s Do not run the bonus test.\n' "" "--nobonus"
+	printf '%15s %-40s Remove the temporary generated files (.diff, .ref, .testout)\n' "" "--nolog"
 	printf '%15s %-40s Change the name of the deepthought file.\n' "" "--dt-name=n | --deepthought-name=n"
 	printf '%15s %-40s Change the path of the deepthought file.\n' "" "--dt-path=p | --deepthought-path=p"
 	printf '%15s %-40s Specify a custom BUFFER_SIZE (default is 32).\n' ""  "--bfz=n | --BUFFER_SIZE=n"
@@ -20,7 +22,7 @@ function display_help() {
 
 function fatal_error() {
 	echo -e "[\033[31mFATAL\033[0m] $1"
-	echo -e "[FATAL] $1" >> $DT_PATH/$DEEPTHOUGHT
+	[ $NODT == "no" ] && [ -d $DT_PATH ] && echo -e "[FATAL] $1" >> $DT_PATH/$DEEPTHOUGHT
 	finish_cleanup
 	exit $2
 }
@@ -36,7 +38,6 @@ function warn() {
 function info() {
 	echo -e "[\033[35mINFO\033[0m] $1"
 }
-
 
 function assert_test() {
 	if [ $1 -eq 0 ]
@@ -54,5 +55,4 @@ function summary() {
 	printf "Tested: %d\n" $(($test_passed+$test_failed))
 	printf "Passed: \033[32m%d\033[0m\n" $test_passed
 	printf "Failed: \033[31m%d\033[0m\n" $test_failed
-	printf "\nLogs and deepthought have been saved in the \033[0;34mout\033[0m directory.\n"
 }

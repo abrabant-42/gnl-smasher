@@ -14,3 +14,7 @@ function is_gnl_path_correct() {
 		fatal_error "Could not use gnl_path: path exists, but could not found all the required source files." $EXIT_INVALID_PATH
 	fi
 }
+
+function is_dt_path_correct() {
+	[ ! -d $DT_PATH ] && fatal_error "$DT_PATH is not a valid path, deepthought cannot be written." $EXIT_INVALID_PATH
+}

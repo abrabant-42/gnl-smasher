@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo -e "deepthought issued at $(date +%s)\n" > $DT_PATH/$DEEPTHOUGHT
+echo -e "deepthought issued at $(date)\n" > $DT_PATH/$DEEPTHOUGHT
 
 # Register the test in the deepthought file
 #
