@@ -30,6 +30,12 @@ or
 ```bash
 ./smasher.sh run --nobonus
 ```
+
+or with a custom `BUFFER_SIZE` constant (default is 32):
+```bash
+./smasher.sh run --bfz=10000
+```
+
 if you don't want to include the bonus tests, for example.
 
 Extensive configuration is available through other command line flags, please refer to the output of the `help` command.
