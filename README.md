@@ -28,10 +28,10 @@ As a quick start, simply perform the following command:
 ```
 or
 ```bash
-./smasher.sh run --nobonus
+./smasher.sh run --bonus
 ```
 
-if you don't want to include the bonus tests, for example.
+if you want to include the bonus test.
 
 or with a custom `BUFFER_SIZE` constant (default is 32):
 ```bash
