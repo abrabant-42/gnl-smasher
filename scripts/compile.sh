@@ -12,12 +12,16 @@ CLFAGS='-Werror -Wextra -Wall'
 
 
 function compile_proj_objs() {
-	rm -rf ./obj/get_next_line.o ./obj/get_next_line_utils.o
+	sources=("get_next_line" "get_next_line_utils")
+
+	rm -rf .obj
 	mkdir .obj 2> /dev/null
 
-	${CC} ${CFLAGS} -D BUFFER_SIZE=$BUFFER_SIZE $1/get_next_line.c -c -o .obj/get_next_line.o
-	${CC} ${CFLAGS} -D BUFFER_SIZE=$BUFFER_SIZE $1/get_next_line_utils.c -c -o .obj/get_next_line_utils.o
-
+	[ $BONUS == "yes" ] && suffix="_bonus.c" || suffix=".c"
+	for src in ${sources[@]}
+	do
+		${CC} ${CFLAGS} -D BUFFER_SIZE=$BUFFER_SIZE -c "${1}/${src}${suffix}" -o "./.obj/${src}.o"
+	done
 	[ ! -f ./.obj/get_next_line.o ] || [ ! -f ./.obj/get_next_line_utils.o ] && fatal_error "Could not compile YOUR project!" $EXIT_COMPILATION_ERROR
 }
 

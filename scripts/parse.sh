@@ -8,7 +8,7 @@ BUFFER_SIZE=32
 # bools
 NODT="no"
 RUN="no"
-BONUS="yes"
+BONUS="no"
 LOG="yes"
 
 # Parse the command line arguments
@@ -58,9 +58,9 @@ do
 			info "BUFFER_SIZE set to \033[0;35m$BUFFER_SIZE\033[0m."
 			shift
 			;;
-		--nobonus)
-			BONUS="no"
-			info "Bonus test will be omitted."
+		--bonus)
+			BONUS="yes"
+			info "Including bonus tests. Will expect _bonus.c files instead of standard ones."
 			shift
 			;;
 		--nolog)
