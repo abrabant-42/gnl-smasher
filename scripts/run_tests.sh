@@ -23,7 +23,14 @@ function gen_ref() {
 
 function	gen_out() {
 	comp_test $1
-	./testbin.out >> ./out/test/$test_name.testout
+	# check for timeout
+	my_timeout 7 ./testbin.out > ./out/test/$test_name.testout
+	if [ $? -ne 0 ]
+	then
+		warn "TIMEOUT: \033[0;35m$test_name \033[0mtook too long"
+	else
+		./testbin.out > ./out/test/$test_name.testout
+	fi
 	rm -rf ./testbin.out
 }
 

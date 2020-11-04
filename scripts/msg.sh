@@ -39,6 +39,11 @@ function info() {
 	echo -e "[\033[35mINFO\033[0m] $1"
 }
 
+# Find out if test passes or fails and print a message accordingly.
+#
+# @param	number	the exit code of the diff
+# @param	string	the test name
+
 function assert_test() {
 	if [ $1 -eq 0 ]
 	then
