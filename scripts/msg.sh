@@ -7,12 +7,13 @@ function display_help() {
 	printf '\033[0;34m%-15s \033[0mPurge the deepthought directory.\n' "purge"
 	printf '\033[0;34m%-15s \033[0mOnly display the version of gnl-smasher.\n' "version"
 	printf '\033[0;34m%-15s \033[0mRun the tests\n' "run"
-	printf '%15s %-40s run the bonus test (will expect _bonus.c files).\n' "" "--bonus"
-	printf '%15s %-40s Remove the temporary generated files (.diff, .ref, .testout)\n' "" "--nolog"
-	printf '%15s %-40s Change the name of the deepthought file.\n' "" "--dt-name=n | --deepthought-name=n"
-	printf '%15s %-40s Change the path of the deepthought file.\n' "" "--dt-path=p | --deepthought-path=p"
-	printf '%15s %-40s Specify a custom BUFFER_SIZE (default is 32).\n' ""  "--bfz=n | --BUFFER_SIZE=n"
-	printf '%15s %-40s No deepthought will be generated.\n' ""  "--nodt | --no-deepthought"
+	printf '%15s %-20s run the bonus test (will expect _bonus.c files).\n' "" "--bonus"
+	printf '%15s %-20s Remove the temporary generated files (.diff, .ref, .testout)\n' "" "--nolog"
+	printf '%15s %-20s Change the name of the deepthought file.\n' "" "--dt-name=n"
+	printf '%15s %-20s Change the path of the deepthought file.\n' "" "--dt-path=p"
+	printf '%15s %-20s Specify a custom BUFFER_SIZE (default is 32).\n' ""  "--bfz=n"
+	printf '%15s %-20s No deepthought will be generated.\n' ""  "--nodt"
+	printf '%15s %-20s Check leaks using valgrind (if available)\n' ""  "--valcheck"
 }
 
 # prints a fatal error on stdout and exit the program.
