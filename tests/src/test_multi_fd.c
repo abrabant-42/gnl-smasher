@@ -32,6 +32,7 @@ int		main(void) {
 			printf("%s\n", line);
 		}
 		printf("return value: %d\n", ret);
+		free(line);
 	}
 	return (TEST_SUCCESS);
 }

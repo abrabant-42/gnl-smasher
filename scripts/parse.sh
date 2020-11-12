@@ -10,6 +10,7 @@ NODT="no"
 RUN="no"
 BONUS="no"
 LOG="yes"
+VALCHECK="no"
 
 # Parse the command line arguments
 
@@ -66,6 +67,16 @@ do
 		--nolog)
 			LOG="no"
 			info "Log files will be cleaned up when the tests finish. (deepthought not included)"
+			shift
+			;;
+		--valcheck)
+			if ! command -v valgrind --version &> /dev/null
+			then
+				info "Valgrind could not be found on your system. Valcheck not activated."
+			else
+				VALCHECK="yes"
+				info "Memory leaks will be reported by $(valgrind --version)"
+			fi
 			shift
 			;;
 		*)

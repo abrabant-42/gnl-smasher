@@ -6,7 +6,7 @@ source scripts/msg.sh
 source scripts/compile.sh
 source scripts/run_tests.sh
 source scripts/cleanup.sh
-source scripts/timeout.sh
+source scripts/valcheck.sh
 
 config_path="./gnl_smasher.config"
 gnl_path="./gnl"

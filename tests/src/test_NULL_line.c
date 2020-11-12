@@ -10,4 +10,5 @@ int	main(void) {
 	ret = get_next_line(fd, NULL);
 	/* line should still be null, otherwise print what is inside to produce a diff error */
 	printf("return value: %d\n", ret);
+	close(fd);
 }
