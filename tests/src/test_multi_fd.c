@@ -25,6 +25,7 @@ int		main(void) {
 			free(line);
 			line = NULL;
 		}
+		free(line);
 	}
 	for (size_t i = 0; i < TOTAL_ELEM; ++i) {
 		ret = get_next_line(fd[i], &line);
