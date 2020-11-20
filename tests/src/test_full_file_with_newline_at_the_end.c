@@ -16,6 +16,7 @@ int	main(void) {
 		line = NULL;
 	}
 	printf("return value: %d\n", ret);
+	free(line);
 
 	/* cleaning up */
 	close(fd);
